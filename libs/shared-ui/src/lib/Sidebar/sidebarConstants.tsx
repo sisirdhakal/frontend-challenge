@@ -20,7 +20,18 @@ export const taskTypes: TaskType[] = [
     icon: <FaRegCalendarAlt />,
   },
 ];
+export const categoriesType = [
+  {
+    name: 'Personal',
+    class: 'bg-red-400',
+  },
+  {
+    name: 'Work',
+    class: 'bg-cyan-400',
+  },
+  {
+    name: 'Other',
+    class: 'bg-yellow-400',
+  },
+];
 
-export const TODAY_TASK = 'Today';
-export const UPCOMING_TASK = 'Upcoming';
-export const CALENDAR_TASK = 'Calendar';

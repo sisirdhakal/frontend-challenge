@@ -20,9 +20,14 @@ const TodayPage = () => {
       <div className="mt-14">
         <AddTaskButton />
 
-        <ul className="mt-5" >
+        <ul className="mt-5 ">
           {todayTasks?.map((task) => (
-            <TaskItem task={task} onToggle={updateTask} />
+            <div key={task.id}>
+              <TaskItem task={task} onToggle={updateTask} />
+              {todayTasks.length > 1 && (
+                <div className="w-full h-[1px] my-2 bg-gray-200" />
+              )}
+            </div>
           ))}
         </ul>
       </div>
