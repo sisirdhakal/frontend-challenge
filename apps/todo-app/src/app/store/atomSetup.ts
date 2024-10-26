@@ -11,9 +11,9 @@ export const tasksState = atom<Task[]>({
 });
 
 // Atom to store Seleted Page Component
-export const selectedPageState = atom<string>({
+export const selectedPageState = atom<{ name: string; type: string }>({
   key: 'selectedPageState',
-  default: 'Today', // Default is 'Today' page
+  default: { name: 'Today', type: 'Task' },
 });
 
 export interface TaskModalState {
