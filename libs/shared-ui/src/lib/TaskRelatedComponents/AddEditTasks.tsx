@@ -6,7 +6,7 @@ import { Task, taskSchema } from '@frontend-challenge/todoSchema';
 import dayjs from 'dayjs';
 
 type Props = {
-  toggleAddEditTasks: () => void;
+  toggleAddEditTasks: (value: boolean) => void;
   taskToEdit?: Task | null;
   onSubmit: (task: Task, editTask: boolean) => void;
   onDelete: () => void;
@@ -72,7 +72,7 @@ export const AddEditTasks = ({
         <span className="block font-semibold text-xl text-gray-900">
           {taskToEdit ? 'Edit Task' : 'Add Task'}
         </span>
-        <button onClick={toggleAddEditTasks}>
+        <button onClick={() => toggleAddEditTasks(false)}>
           <IoClose className="w-6 h-6" />
         </button>
       </div>
@@ -142,7 +142,7 @@ export const AddEditTasks = ({
         <div className="flex items-center justify-between gap-4 mt-auto h-auto">
           <button
             type="button"
-            onClick={taskToEdit ? onDelete : toggleAddEditTasks}
+            onClick={taskToEdit ? onDelete : () => toggleAddEditTasks(false)}
             className="border border-gray-400 rounded-md text-gray-700 w-full px-4 py-2"
           >
             {taskToEdit ? 'Delete Task' : 'Cancel'}
