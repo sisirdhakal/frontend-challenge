@@ -7,22 +7,29 @@ import { selectedPageState, taskModalState } from '../store/atomSetup';
 import { getPageComponent } from './TaskPages/ComponentFactory';
 import { useTaskManager } from '../hooks/useTaskManager';
 import { Task } from '@frontend-challenge/todoSchema';
+import { toast } from 'react-toastify';
 
 type Props = {};
 
 const Layout: React.FC<Props> = (props: Props) => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const selectedPage = useRecoilValue(selectedPageState);
-  const { isOpen } = useRecoilValue(taskModalState);
+  const { isOpen, task } = useRecoilValue(taskModalState);
   const setTaskModalState = useSetRecoilState(taskModalState);
-  const { addTask } = useTaskManager();
+  const { addTask, getTaskCounts, updateTask } = useTaskManager();
 
   const toggleAddEditTasks = () => {
     setTaskModalState((prev) => ({ isOpen: !prev.isOpen, task: prev.task }));
   };
 
-  const handleAddTask = (task: Task) => {
-    addTask(task);
+  const handleAddOrUpdateTask = (task: Task, editTask: boolean) => {
+    if (editTask) {
+      updateTask(task);
+      toast.success('Task updated successfully!');
+    } else {
+      addTask(task);
+      toast.success('Task added successfully!');
+    }
     toggleAddEditTasks();
   };
   // Getting the component based on the selected page
@@ -33,18 +40,16 @@ const Layout: React.FC<Props> = (props: Props) => {
       <Sidebar
         isOpen={isSidebarOpen}
         toggleSidebar={() => setSidebarOpen(!isSidebarOpen)}
+        getTaskCounts={getTaskCounts}
       />
-      <main
-        className={`flex-1 transition-all duration-300 ${
-          isSidebarOpen ? 'max-w-full' : 'max-w-3xl'
-        }`}
-      >
+      <main className={`flex-1 transition-all duration-300 w-full`}>
         <PageComponent />
       </main>
       {isOpen && (
         <AddEditTasks
           toggleAddEditTasks={toggleAddEditTasks}
-          onSubmit={handleAddTask}
+          onSubmit={handleAddOrUpdateTask}
+          taskToEdit={task}
         />
       )}
     </div>

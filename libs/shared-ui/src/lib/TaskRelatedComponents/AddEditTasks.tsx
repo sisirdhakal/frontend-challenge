@@ -1,24 +1,14 @@
-// libs/shared-ui/src/lib/TaskRelatedComponents/AddEditTasks.tsx
-
 import { usePageFilter } from '@frontend-challenge/hooks';
 import React, { useState, useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { z } from 'zod';
 import { Task, taskSchema } from '@frontend-challenge/todoSchema';
-
-type TaskEditProps = {
-  id?: number;
-  title?: string;
-  description?: string;
-  createdAt?: Date;
-  category?: string;
-  status?: 'todo' | 'in-progress' | 'completed';
-};
+import dayjs from 'dayjs';
 
 type Props = {
   toggleAddEditTasks: () => void;
-  taskToEdit?: TaskEditProps;
-  onSubmit: (task: Task) => void;
+  taskToEdit?: Task | null;
+  onSubmit: (task: Task, editTask: boolean) => void;
 };
 
 export const AddEditTasks = ({
@@ -26,13 +16,10 @@ export const AddEditTasks = ({
   taskToEdit,
   onSubmit,
 }: Props) => {
-  const { currentPage } = usePageFilter();
-
-  // Define form state using React useState hook
   const [task, setTask] = useState({
     title: '',
     description: '',
-    createdAt: new Date(),
+    createdAt: dayjs().toISOString(), // Initialize with current date as ISO string
     category: 'personal',
     status: 'todo',
   });
@@ -43,7 +30,7 @@ export const AddEditTasks = ({
       setTask({
         title: taskToEdit.title || '',
         description: taskToEdit.description || '',
-        createdAt: taskToEdit.createdAt || new Date(),
+        createdAt: dayjs(taskToEdit.createdAt).format('YYYY-MM-DD'),
         category: taskToEdit.category || 'personal',
         status: taskToEdit.status || 'todo',
       });
@@ -55,10 +42,11 @@ export const AddEditTasks = ({
     e.preventDefault();
     const result = taskSchema.safeParse({
       ...task,
+      createdAt: new Date(task.createdAt),
       id: taskToEdit ? taskToEdit.id : Date.now(),
     });
     if (result.success) {
-      onSubmit(result.data);
+      onSubmit(result.data, taskToEdit ? true : false);
     } else {
       console.error('Validation errors:', result.error.format());
     }
@@ -117,8 +105,8 @@ export const AddEditTasks = ({
             <input
               type="date"
               name="createdAt"
-              value={task.createdAt.toISOString().split('T')[0]}
-              onChange={handleChange}
+              value={dayjs(task.createdAt).format('YYYY-MM-DD')} // Format for input
+              onChange={(e) => handleChange(e as any)} // Ensure type safety
               className="border rounded-md p-2 w-full cursor-pointer"
             />
           </div>
@@ -155,13 +143,13 @@ export const AddEditTasks = ({
             onClick={toggleAddEditTasks}
             className="border border-gray-400 rounded-md text-gray-700 w-full px-4 py-2"
           >
-            Cancel
+            {taskToEdit ? 'Delete Task' : 'Cancel'}
           </button>
           <button
             type="submit"
             className={`rounded-md w-full px-4 py-2 ${
               taskToEdit
-                ? 'bg-yellow-500 text-black'
+                ? 'bg-yellow-400 text-black'
                 : 'bg-green-500 text-white'
             }`}
           >
