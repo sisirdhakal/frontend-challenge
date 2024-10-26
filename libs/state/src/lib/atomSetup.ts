@@ -2,7 +2,7 @@
 
 import { atom } from 'recoil';
 import { Task } from '@frontend-challenge/todoSchema';
-import { getTasksFromLocalStorage } from '../utils';
+import { getTasksFromLocalStorage } from './utils';
 
 // Atom to hold all tasks
 export const tasksState = atom<Task[]>({

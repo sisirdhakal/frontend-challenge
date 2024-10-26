@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
-import { tasksState } from '../store/atomSetup';
+import { tasksState } from '@frontend-challenge/state';
 import { Task, TaskCategory } from '@frontend-challenge/todoSchema';
-import { setTasksToLocalStorage } from '../utils';
+import { setTasksToLocalStorage } from '@frontend-challenge/state';
 
 export const useTaskManager = () => {
   const [tasks, setTasks] = useRecoilState(tasksState);

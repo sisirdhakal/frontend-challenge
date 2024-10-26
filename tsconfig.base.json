@@ -17,6 +17,7 @@
     "paths": {
       "@frontend-challenge/hooks": ["libs/hooks/src/index.ts"],
       "@frontend-challenge/shared-ui": ["libs/shared-ui/src/index.ts"],
+      "@frontend-challenge/state": ["libs/state/src/index.ts"],
       "@frontend-challenge/todoSchema": ["libs/types/todoSchema/src/index.ts"]
     }
   },

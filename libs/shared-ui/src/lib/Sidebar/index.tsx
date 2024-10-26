@@ -3,7 +3,7 @@ import { IoPersonCircleSharp } from 'react-icons/io5';
 import { categoriesType, TaskType, taskTypes } from './sidebarConstants';
 import { useMediaQuery, usePageFilter } from '@frontend-challenge/hooks';
 import { useSetRecoilState } from 'recoil';
-import { taskModalState } from '../../../../../apps/todo-app/src/app/store/atomSetup';
+import { taskModalState } from '@frontend-challenge/state';
 import Drawer from './Drawer';
 
 export type TaskCounts = {

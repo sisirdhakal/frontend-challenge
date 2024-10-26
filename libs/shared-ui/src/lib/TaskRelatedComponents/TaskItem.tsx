@@ -1,6 +1,6 @@
 // libs/shared-ui/src/lib/TaskRelatedComponents/TaskItem.tsx
 import { Task } from '@frontend-challenge/todoSchema';
-import { taskModalState } from '../../../../../apps/todo-app/src/app/store/atomSetup';
+import { taskModalState } from '@frontend-challenge/state';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { FaAngleRight } from 'react-icons/fa6';
 import { IoCheckmark } from 'react-icons/io5';

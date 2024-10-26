@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { FaPlus } from 'react-icons/fa';
-import { taskModalState } from '../../../../../apps/todo-app/src/app/store/atomSetup';
+import { taskModalState } from '@frontend-challenge/state';
 
 export const AddTaskButton = () => {
   const [modalState, setModalState] = useRecoilState(taskModalState);

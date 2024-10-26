@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { AddEditTasks, Dialog, Sidebar } from '@frontend-challenge/shared-ui';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { selectedPageState, taskModalState } from '../store/atomSetup';
+import { selectedPageState, taskModalState } from '@frontend-challenge/state';
 import { getPageComponent } from './TaskPages/ComponentFactory';
 import { useTaskManager } from '../hooks/useTaskManager';
 import { Task } from '@frontend-challenge/todoSchema';
