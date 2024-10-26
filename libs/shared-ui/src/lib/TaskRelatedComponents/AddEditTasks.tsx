@@ -9,12 +9,14 @@ type Props = {
   toggleAddEditTasks: () => void;
   taskToEdit?: Task | null;
   onSubmit: (task: Task, editTask: boolean) => void;
+  onDelete: () => void;
 };
 
 export const AddEditTasks = ({
   toggleAddEditTasks,
   taskToEdit,
   onSubmit,
+  onDelete,
 }: Props) => {
   const [task, setTask] = useState({
     title: '',
@@ -140,7 +142,7 @@ export const AddEditTasks = ({
         <div className="flex items-center justify-between gap-4 mt-auto h-auto">
           <button
             type="button"
-            onClick={toggleAddEditTasks}
+            onClick={taskToEdit ? onDelete : toggleAddEditTasks}
             className="border border-gray-400 rounded-md text-gray-700 w-full px-4 py-2"
           >
             {taskToEdit ? 'Delete Task' : 'Cancel'}
