@@ -1,38 +1,34 @@
 import { useRecoilState } from 'recoil';
 import { tasksState } from '../store/atomSetup';
 import { Task, TaskCategory } from '@frontend-challenge/todoSchema';
-import { getTasksFromLocalStorage, setTasksToLocalStorage } from '../utils';
-import { useEffect } from 'react';
+import { setTasksToLocalStorage } from '../utils';
 
 export const useTaskManager = () => {
   const [tasks, setTasks] = useRecoilState(tasksState);
-
-  // Load tasks from localStorage on mount
-  useEffect(() => {
-    const storedTasks = getTasksFromLocalStorage();
-    setTasks(storedTasks);
-  }, [setTasks]);
-
-  // Save tasks to localStorage whenever tasks change
-  useEffect(() => {
-    setTasksToLocalStorage(tasks);
-  }, [tasks]);
+  // Helper to update tasks state and localStorage simultaneously
+  const updateTasks = (newTasks: Task[]) => {
+    setTasks(newTasks);
+    setTasksToLocalStorage(newTasks);
+  };
 
   // Add a new task
   const addTask = (task: Task) => {
-    setTasks([...tasks, task]);
+    const updatedTasks = [...tasks, task];
+    updateTasks(updatedTasks);
   };
 
   // Update a task by id
   const updateTask = (updatedTask: Task) => {
-    setTasks(
-      tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    const updatedTasks = tasks.map((task) =>
+      task.id === updatedTask.id ? updatedTask : task
     );
+    updateTasks(updatedTasks);
   };
 
   // Remove a task by id
   const removeTask = (taskId: number) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    updateTasks(updatedTasks);
   };
 
   // Get filtered tasks based on the specified filter
@@ -94,7 +90,7 @@ export const useTaskManager = () => {
         todayCount++;
       }
 
-      if (taskDate > todayISO && task.status !== 'completed') {
+      if (task.status !== 'completed') {
         upcomingCount++;
       }
 

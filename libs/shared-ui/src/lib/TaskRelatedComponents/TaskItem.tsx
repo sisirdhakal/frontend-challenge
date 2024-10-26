@@ -18,7 +18,6 @@ export const TaskItem = ({ task, onToggle }: TaskItemProps) => {
       task.status === 'completed' ? 'todo' : 'completed';
 
     const updatedTask = { ...task, status: newStatus };
-    console.log(updatedTask);
     onToggle(updatedTask);
   };
   const setTaskModalState = useSetRecoilState(taskModalState);

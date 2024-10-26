@@ -2,11 +2,12 @@
 
 import { atom } from 'recoil';
 import { Task } from '@frontend-challenge/todoSchema';
+import { getTasksFromLocalStorage } from '../utils';
 
 // Atom to hold all tasks
 export const tasksState = atom<Task[]>({
   key: 'tasksState',
-  default: [],
+  default: getTasksFromLocalStorage(),
 });
 
 // Atom to store Seleted Page Component
