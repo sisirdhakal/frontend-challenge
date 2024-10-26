@@ -10,9 +10,7 @@ export function App() {
     <>
       <RecoilRoot>
         <ToastContainer />
-        <Layout>
-          <LandingPage />
-        </Layout>
+        <Layout />
       </RecoilRoot>
     </>
   );

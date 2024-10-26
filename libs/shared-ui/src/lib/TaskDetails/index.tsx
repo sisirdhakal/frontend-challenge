@@ -1,11 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {
-  task:any
-}
+type Props = {};
 
 export const TaskDetails = (props: Props) => {
-  return (
-    <div>TaskDetails</div>
-  )
-}
+  return <div>TaskDetails</div>;
+};
+

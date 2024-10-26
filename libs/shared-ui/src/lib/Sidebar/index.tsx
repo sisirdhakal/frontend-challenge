@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoPersonCircleSharp } from 'react-icons/io5';
-import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
-import { FaTasks } from 'react-icons/fa';
+import { taskTypes } from './sidebarConstants';
+import { usePageFilter } from '@frontend-challenge/hooks';
 
 type SidebarProps = {
   isOpen: boolean;
@@ -9,6 +9,7 @@ type SidebarProps = {
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+  const { currentPage, updatePageFilter } = usePageFilter();
   return (
     <div
       className={`bg-[#F4F4F4] text-gray-900 transition-all duration-300 rounded-[10px] ${
@@ -72,12 +73,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
 
           <h3 className="mt-4 font-medium text-md">Tasks</h3>
           <ul className="mt-1 space-y-1">
-            <li className="px-2 rounded-md hover:bg-gray-200 cursor-pointer flex items-center gap-3 h-10">
-              <MdKeyboardDoubleArrowRight className="w-5 h-5" /> UpComing
-            </li>
-            <li className="pl-3 pr-2 rounded-md hover:bg-gray-200 cursor-pointer flex items-center gap-3 h-10">
-              <FaTasks className="w-4 h-4" /> Today
-            </li>
+            {taskTypes.map((item) => {
+              return (
+                <li
+                  key={item.name}
+                  className={`px-2 rounded-md ${
+                    currentPage == item.name ? 'bg-gray-200 font-semibold' : 'font-normal'
+                  } hover:bg-gray-200 transition-all duration-300 cursor-pointer flex items-center gap-3 h-10`}
+                  onClick={()=>updatePageFilter(item.name)}
+                >
+                  <span className="w-5">{item.icon}</span>
+                  <span className="w-full">{item.name}</span>
+                </li>
+              );
+            })}
           </ul>
           <div className="w-full my-2 h-[1px] rounded-md bg-gray-200"></div>
           <h3 className=" font-medium text-md">Categories</h3>

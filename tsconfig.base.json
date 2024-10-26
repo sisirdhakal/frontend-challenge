@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@frontend-challenge/shared-ui": ["libs/shared-ui/src/index.ts"]
+      "@frontend-challenge/hooks": ["libs/hooks/src/index.ts"],
+      "@frontend-challenge/shared-ui": ["libs/shared-ui/src/index.ts"],
+      "@frontend-challenge/todoSchema": ["libs/types/todoSchema/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,15 +1,19 @@
 // apps/todo-app/src/app/views/Layout.tsx
 
 import React, { useState } from 'react';
-import { Sidebar, Footer, TaskDetails } from '@frontend-challenge/shared-ui';
+import { Sidebar, TaskDetails } from '@frontend-challenge/shared-ui';
+import { useRecoilValue } from 'recoil';
+import { selectedPageState } from '../store/atomSetup';
+import { getPageComponent } from './TaskPages/ComponentFactory';
 
-type Props = {
-  children: React.ReactNode;
-};
+type Props = {};
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout: React.FC<Props> = (props: Props) => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
-  const [selectedTask, setSelectedTask] = useState(null);
+  const selectedPage = useRecoilValue(selectedPageState);
+
+  // Getting the component based on the selected page
+  const PageComponent = getPageComponent(selectedPage);
 
   return (
     <div className="flex min-h-screen p-6 rounded-md gap-5">
@@ -22,13 +26,7 @@ const Layout: React.FC<Props> = ({ children }) => {
           isSidebarOpen ? 'max-w-full' : 'max-w-3xl'
         }`}
       >
-        {children}
-        {selectedTask && (
-          <TaskDetails
-            task={selectedTask}
-            // onClose={() => setSelectedTask(null)}
-          />
-        )}
+        <PageComponent />
       </main>
     </div>
   );
