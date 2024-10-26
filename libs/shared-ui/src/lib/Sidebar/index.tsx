@@ -13,7 +13,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
   return (
     <div
       className={`bg-[#F4F4F4] text-gray-900 transition-all duration-300 rounded-[10px] ${
-        isOpen ? 'w-72' : 'w-20'
+        isOpen ? 'max-w-72 w-full' : 'w-20'
       }`}
     >
       <div className="flex flex-col p-4 overflow-hidden">
