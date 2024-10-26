@@ -24,14 +24,16 @@ export const categoriesType = [
   {
     name: 'Personal',
     class: 'bg-red-400',
+    type: 'category',
   },
   {
     name: 'Work',
     class: 'bg-cyan-400',
+    type: 'category',
   },
   {
     name: 'Other',
     class: 'bg-yellow-400',
+    type: 'category',
   },
 ];
-

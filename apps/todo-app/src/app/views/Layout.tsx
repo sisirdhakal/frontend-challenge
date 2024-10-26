@@ -73,7 +73,7 @@ const Layout: React.FC<Props> = (props: Props) => {
     }
   };
   // Getting the component based on the selected page
-  const PageComponent = getPageComponent(selectedPage);
+  const PageComponent = getPageComponent(selectedPage.name, selectedPage.type);
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen p-0 lg:p-6 rounded-md gap-5 relative">

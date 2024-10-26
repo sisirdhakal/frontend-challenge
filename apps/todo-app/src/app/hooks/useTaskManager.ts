@@ -33,7 +33,15 @@ export const useTaskManager = () => {
 
   // Get filtered tasks based on the specified filter
   const getFilteredTasks = (
-    filter: 'Today' | 'Tomorrow' | 'This Week' | 'Upcoming' | 'All'
+    filter:
+      | 'Today'
+      | 'Tomorrow'
+      | 'This Week'
+      | 'Upcoming'
+      | 'All'
+      | 'Personal'
+      | 'Work'
+      | 'Other'
   ) => {
     const today = new Date();
     const todayISO = today.toISOString().split('T')[0];
@@ -62,6 +70,12 @@ export const useTaskManager = () => {
           );
         case 'Upcoming':
           return task.status !== 'completed';
+        case 'Personal':
+          return task.category === 'personal';
+        case 'Work':
+          return task.category === 'work';
+        case 'Other':
+          return task.category === 'other';
         case 'All':
         default:
           return true;
