@@ -1,0 +1,9 @@
+{
+  "name": "todoSchema",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/types/todoSchema/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project todoSchema --web",
+  "targets": {}
+}

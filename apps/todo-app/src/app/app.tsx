@@ -1,10 +1,18 @@
-import NxWelcome from './nx-welcome';
+import { RecoilRoot } from 'recoil';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Layout from './views/Layout';
+import LandingPage from './views/LandingPage';
 
 export function App() {
   return (
-    <div>
-      <NxWelcome title="todo-app" />
-    </div>
+    <>
+      <RecoilRoot>
+        <ToastContainer />
+        <Layout />
+      </RecoilRoot>
+    </>
   );
 }
 
