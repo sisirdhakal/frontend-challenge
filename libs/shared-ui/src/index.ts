@@ -1,3 +1,5 @@
 export * from './lib/Sidebar';
 export * from './lib/Footer';
-export * from './lib/TaskDetails';
+export * from './lib/TaskRelatedComponents/AddEditTasks';
+export * from './lib/TaskRelatedComponents/AddTaskButton';
+export * from './lib/TaskRelatedComponents/TaskItem';

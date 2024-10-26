@@ -14,3 +14,8 @@ export const selectedPageState = atom<string>({
   key: 'selectedPageState',
   default: 'Today', // Default is 'Today' page
 });
+
+export const taskModalState = atom({
+  key: 'taskModalState',
+  default: { isOpen: false, task: null },
+});

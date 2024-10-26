@@ -7,6 +7,7 @@ export const taskSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
   createdAt: z.date(),
+  updatedAt: z.date().optional().default(new Date()),
   category: z.string(),
   status: z.enum(['todo', 'in-progress', 'completed']),
 });
