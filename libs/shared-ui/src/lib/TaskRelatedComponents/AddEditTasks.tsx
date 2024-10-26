@@ -64,7 +64,7 @@ export const AddEditTasks = ({
 
   return (
     <div
-      className={`bg-[#F4F4F4] text-gray-900 transition-all duration-300 rounded-[10px] max-w-96 w-full p-4 flex flex-col`}
+      className={`bg-[#F4F4F4] text-gray-900 transition-all duration-300 rounded-[10px] max-w-96 w-full p-4 flex flex-col lg:h-[calc(94vh)] lg:sticky top-3`}
     >
       <div className="flex items-center justify-between">
         <span className="block font-semibold text-xl text-gray-900">
@@ -97,7 +97,7 @@ export const AddEditTasks = ({
               value={task.description}
               onChange={handleChange}
               className="border rounded-md p-2 w-full"
-              rows={5}
+              rows={3}
             />
           </div>
           <div className="mb-4">
